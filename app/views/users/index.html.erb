@@ -1,0 +1,23 @@
+<table class="table table-striped">
+  <thead>
+  	<tr>
+  		<td>ID</td>
+  		<td>name</td>
+  		<td>email</td>
+  		<td>rate</td>
+		<td>actions</td>
+  	</tr>
+  </thead>
+  <%@users.each do |user|%>
+  	<tr>
+  		<td><%=user.id%></td>
+  		<td><%=user.name%></td>
+  		<td><%=user.email%></td>
+  		<td><%=user.rate%></td>
+  		<td><%=link_to 'редактировать', '#'%>
+  			<%=link_to 'удалить', user_path(user), method:'delete'%>
+  		</td>
+  	</tr>
+  <%end%>
+</table>
+<%= will_paginate @users %>

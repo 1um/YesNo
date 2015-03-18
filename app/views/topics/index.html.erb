@@ -1,0 +1,21 @@
+<div class="topics">
+  <div class="page-header">
+    <%if current_user %>
+      <span class='add_new'>
+        <%=link_to icon('plus-square'), new_topic_path %>
+      </span>
+    <%end%>
+    <h1>
+      Обсуждения:
+    </h1>
+  </div>
+
+
+
+  <div class='cards'>
+    <% @topics.each do |topic| %>
+      <%=render topic, clicable: true %>
+    <%end%>
+  </div>
+  <%= will_paginate @topics %>
+</div>

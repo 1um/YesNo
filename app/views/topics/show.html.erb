@@ -1,0 +1,37 @@
+<div class='topics'>
+	<div class="page-header">
+		<h1>
+		  <%= link_to icon('chevron-circle-left'), topics_path  %> 
+		   Обусждение:
+	   </h1>
+	</div>
+
+	<%=render @topic, clicable: false%>
+
+
+
+	<div class="container-fluid">
+		<div class="row answers">
+		  <div class="col-md-6 left">
+		  	<h1>Плюсы</h1>
+		  	<%if current_user %>
+		  		<%= render 'answers/form', answer: Answer.new(plus: true, topic: @topic) %>
+		  	<%end%>
+		  	<% @plus_answers.each do |a| %>
+		  		<%= render a%>
+		  	<%end%>
+		  	
+		  </div>
+		  <div class="col-md-6 right">
+		  	<h1>Минусы</h1>
+		  	<%if current_user %>
+		  		<%= render 'answers/form', answer: Answer.new(plus: false, topic: @topic) %>
+		  	<%end%>
+		  	<% @minus_answers.each do |a| %>
+		  		<%= render a%>
+		  	<%end%>
+
+		  </div>
+		</div>
+	</div>
+</div>

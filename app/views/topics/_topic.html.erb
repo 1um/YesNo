@@ -1,0 +1,43 @@
+<div class='card well <%='clicable' if clicable%>'>
+  <span class='content'>
+    <% if clicable %>
+      <%=link_to topic.content, topic_path(topic)%>
+    <% else %>
+      <%=topic.content%>
+    <%end%>
+  </span>
+  <span class='likes'>
+     <%if current_user %>
+        <% already_like=current_user.like? topic%>
+        <span class="likes <%= already_like ? 'like-down' : 'like-up' %>">
+          <%=link_to like_it_topic_path(topic), method: :put do %>
+            
+              <%=icon('thumbs-up')%>
+            
+              <%=icon('thumbs-o-up')%>
+            
+            <span class='counter'>
+              <%=topic.like_counter%>
+            </span>
+          <%end%>
+        </span>
+      <%else%>
+        <%=icon('thumbs-o-up')%>
+        <span class='counter'>
+          <%=topic.like_counter%>
+        </span>
+      <%end%>
+    
+  </span>
+  <span class='info'>
+    <%=topic.user.name %>
+    <%=topic.created_at.strftime("%d %B %Y %H:%M") %>
+    <%if can? :manage, topic%>
+      <%= link_to icon('pencil'), edit_topic_path(topic) %>
+      <%= link_to icon('trash-o'), topic_path(topic),
+                  :method => :delete,
+                  :data => { confirm:'Точно удалить?'}
+                  %>
+    <%end%>
+  </span>
+</div>

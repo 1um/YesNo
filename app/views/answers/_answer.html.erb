@@ -1,0 +1,34 @@
+<div class='answer well'>
+  <table>
+    <tr>
+      <td class='left-likes'>
+        <%if current_user %>
+          <% already_like=current_user.like? answer%>
+          <span class="likes <%= already_like ? 'like-down' : 'like-up' %>">
+            <%=link_to like_it_answer_path(answer), method: :put do %>
+              
+                <%=icon('thumbs-up')%>
+              
+                <%=icon('thumbs-o-up')%>
+              
+              <span class='counter'>
+                <%=answer.like_counter%>
+              </span>
+            <%end%>
+          </span>
+        <%else%>
+          <%=icon('thumbs-o-up')%>
+          <span class='counter'>
+            <%=answer.like_counter%>
+          </span>
+        <%end%>
+      </td>
+      <td class='right-content'>
+          <%=answer.content.gsub("\n",'<br />').html_safe%>
+      </td>
+  </tr>
+  </table>
+  <div class='user_info'>
+    <%=answer.user.name%>
+  </div>
+</div>

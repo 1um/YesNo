@@ -1,0 +1,14 @@
+<%= form_for(answer) do |f| %>
+  
+  <%= f.hidden_field :plus %>
+  <%= f.hidden_field :topic_id %>
+  <div class="input-group">
+    <%= f.text_area :content, :class => 'form-control', required: true %>
+    <span class="input-group-btn">
+      <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+        <%=icon 'plus-square'%>
+      <% end %>
+    </span>
+  </div>
+
+<% end %>
